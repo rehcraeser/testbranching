@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <title>Teams list</title>
+        <script src="https://code.angularjs.org/1.5.9/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.9/angular-animate.min.js"></script>
+
+        <script src="libs/ui-bootstrap-2.3.0.min.js"></script>
+        <script src="libs/ui-bootstrap-tpls-2.3.0.min.js"></script>
+
+        <script src="js/app.js"></script>
+        <script src="js/team_service.js"></script>
+        <script src="js/team_controller.js"></script>
+        <script src="js/user_service.js"></script>
+        <script src="js/user_controller.js"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class="generic-container">
+            <div class="panel panel-default" ng-controller="TeamController as tctrl">
+                <div class="panel-heading"><span class="lead">Teams list</span></div>
+                <div class="tablecontainer">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th width="20%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="t in tctrl.teams">
+                                <td><span ng-bind="t.id"></span></td>
+                                <td><span ng-bind="t.name"></span></td>
+                                <td>
+                                    <button type="button" class="btn btn-success custom-width">Edit</button>
+                                    <button type="button" ng-click="tctrl.remove(t.id)" class="btn btn-danger custom-width">Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-default" ng-controller="UserController as uctrl">
+                <div class="panel-heading"><span class="lead">Users list</span></div>
+                <div class="tablecontainer">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Team</th>
+                            <th width="20%"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="u in uctrl.users">
+                            <td><span ng-bind="u.id"></span></td>
+                            <td><span ng-bind="u.name"></span></td>
+                            <td><span ng-bind="u.role"></span></td>
+                            <td><span ng-bind="u.team.name"></span></td>
+                            <td>
+                                <button type="button" class="btn btn-success custom-width">Edit</button>
+                                <button type="button" ng-click="uctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
